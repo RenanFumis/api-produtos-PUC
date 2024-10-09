@@ -38,4 +38,23 @@ apiRouterV1.get('/produtos/:id', function(req, res, next){
   }
 });
 
+apiRouterV1.post('/produtos', function(req, res, next){
+  let produto = req.body
+  let newId = Math.max(...produtos.map(p => p.id)) + 1
+  produto.id = newId
+  produtos.push(produto)
+  res.status(201).json({message: 'Produto inserido com sucesso ',produto})
+})
+
+
+apiRouterV1.del('/produtos/:id', function(req, res, next){
+  let id = req.params.id
+  if(id) {
+    idInt = Number.parseInt(id)
+    let idx = produtos.findIndex(p => p.id === idInt)
+    if(idx >= 0){
+      
+    }
+  }
+})
 module.exports = apiRouterV1;
